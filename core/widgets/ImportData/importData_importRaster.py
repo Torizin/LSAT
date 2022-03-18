@@ -164,6 +164,10 @@ class ImportRaster(QObject):
         """
         rat = gdal.RasterAttributeTable()
         values, counts = np.unique(newraster.getArrayFromBand(), return_counts=True)
+        if newraster.nodata in values:
+            index = np.where(values == newraster.nodata)
+            values = np.delete(values, index)
+            counts = np.delete(counts, index)
         rat.CreateColumn("OID", gdal.GFT_Integer, gdalconst.GFU_MinMax)
         rat.CreateColumn("VALUE", gdal.GFT_Real, gdalconst.GFU_MinMax)
         rat.CreateColumn("COUNT", gdal.GFT_Integer, gdalconst.GFU_MinMax)
@@ -180,9 +184,11 @@ class ImportRaster(QObject):
         datatype_dic = {
             "Float": gdal.GDT_Float32,
             "Float32": gdal.GDT_Float32,
+            "Float64": gdal.GDT_Float64,
             "Int": gdal.GDT_Int16,
             "Int16": gdal.GDT_Int16,
-            "Int32": gdal.GDT_Int16,
+            "UInt16": gdal.GDT_Int32,
+            "Int32": gdal.GDT_Int32,
             "Byte": gdal.GDT_Int16
         }
         return datatype_dic[rastertype]
@@ -215,25 +221,22 @@ class ImportRaster(QObject):
         gdalraster = gdal.Open(raster.path, gdalconst.GA_ReadOnly)
         gdal.ReprojectImage(gdalraster, newraster, raster.proj, mask.proj, resamplingtypefunc)
         newraster.FlushCache()
+        self.updateNoDataValue(newrasterpath, mask)
         newraster = Raster(newrasterpath)
         self.checkRAT(raster, newraster)
-        self.updateNoDataValue(newraster, mask)
         return newrasterpath
 
-    def updateNoDataValue(self, newraster, mask) -> None:
+    def updateNoDataValue(self, newrasterpath, mask) -> None:
         """
         Updates the new raster to have NoData where the mask has NoData.
         """
-        dataset = gdal.Open(newraster.path, gdal.GA_Update)
+        dataset = gdal.Open(newrasterpath, gdal.GA_Update)
         band = dataset.GetRasterBand(1)
         newrasterarray = band.ReadAsArray()
         maskarray = mask.getArrayFromBand()
-        newrasterarray[newrasterarray == newraster.nodata] = mask.nodata
         newrasterarray[maskarray == mask.nodata] = mask.nodata
         band.WriteArray(newrasterarray)
         band.SetNoDataValue(mask.nodata)
         band.ComputeStatistics(False)
-        band.FlushCache()
-        band = None
-        dataset = None
+        dataset.FlushCache()
         self.infoSignal.emit(self.tr("NoData values updated."))

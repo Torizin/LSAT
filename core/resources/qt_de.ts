@@ -586,7 +586,7 @@
     </message>
     <message>
         <source>True Positive Rate (Sensitivity)</source>
-        <translation>Richtig-positv-Rate (Sensitivität)</translation>
+        <translation>Richtig-Positv-Rate (Sensitivität)</translation>
     </message>
     <message>
         <source>AUC: %.2f</source>
@@ -1792,6 +1792,10 @@ MultiPolygons, or LineStrings to MultiLineStrings.</source>
         <translation>Inventar aufteilen</translation>
     </message>
     <message>
+        <source>Ignore feature outside mask raster</source>
+        <translation>Feature außerhalb des Maskenrasters ignorieren</translation>
+    </message>
+    <message>
         <source>Import feature</source>
         <translation>Feature importieren</translation>
     </message>
@@ -1826,6 +1830,18 @@ MultiPolygons, or LineStrings to MultiLineStrings.</source>
     <message>
         <source>Successfully created {} - {}% of {}</source>
         <translation>Erfolgreich {} erstellt - {}% von {}</translation>
+    </message>
+    <message>
+        <source>Clipping feature to region.shp</source>
+        <translation>Clippe feature auf region.shp</translation>
+    </message>
+    <message>
+        <source>Clipped feature {} created</source>
+        <translation>Geclipptes Feature {} erstellt</translation>
+    </message>
+    <message>
+        <source>Only valid geometries used.</source>
+        <translation>Nur gültige Geometrien verwendet.</translation>
     </message>
 </context>
 <context>
@@ -2599,7 +2615,7 @@ MultiPolygons, or LineStrings to MultiLineStrings.</source>
     </message>
     <message>
         <source>True Positive Rate (Sensitivity)</source>
-        <translation>Richtig-positv-Rate (Sensitivität)</translation>
+        <translation>Richtig-Positv-Rate (Sensitivität)</translation>
     </message>
     <message>
         <source>Output raster {} created.</source>
@@ -4601,6 +4617,10 @@ value</source>
         <translation>Lösche...</translation>
     </message>
     <message>
+        <source>EPSG Codes of Feature and Method differ ({} / {}). Reprojecting.</source>
+        <translation>EPSG Codes von Feature und Methodenlayer unterscheiden sich ({} / {}). Reprojiziere.</translation>
+    </message>
+    <message>
         <source>Perform Clip...</source>
         <translation>Clippe...</translation>
     </message>
@@ -4611,6 +4631,10 @@ value</source>
     <message>
         <source>Perform Symmetrical Difference...</source>
         <translation>Symmetrische Differenz...</translation>
+    </message>
+    <message>
+        <source>Atleast one GDAL error. GDAL error messages: {}</source>
+        <translation>Mindestens ein GDAL Fehler. GDAL Fehlermeldungen: {}</translation>
     </message>
     <message>
         <source>Perform Union...</source>
@@ -4994,7 +5018,7 @@ value</source>
     </message>
     <message>
         <source>True Positive Rate (Sensitivity)</source>
-        <translation>Richtig-positv-Rate (Sensitivität)</translation>
+        <translation>Richtig-Positv-Rate (Sensitivität)</translation>
     </message>
     <message>
         <source>AUC: %.2f</source>
@@ -5061,7 +5085,7 @@ value</source>
     </message>
     <message>
         <source>True Positive Rate (Sensitivity)</source>
-        <translation>Richtig-positv-Rate (Sensitivität)</translation>
+        <translation>Richtig-Positv-Rate (Sensitivität)</translation>
     </message>
     <message>
         <source>AUC: %.2f</source>
@@ -5273,14 +5297,6 @@ value</source>
 <context>
     <name>Zoning</name>
     <message>
-        <source>Total study area</source>
-        <translation>Gesamtstudienfläche</translation>
-    </message>
-    <message>
-        <source>Landslide area</source>
-        <translation>Rutschungsfläche</translation>
-    </message>
-    <message>
         <source>Color</source>
         <translation>Farbe</translation>
     </message>
@@ -5323,6 +5339,14 @@ value</source>
     <message>
         <source>You are at the limit of maximum zones</source>
         <translation>Maximale Zonenanzahl erreicht</translation>
+    </message>
+    <message>
+        <source>False Positive Rate (1-Specificity)</source>
+        <translation>Falsch-Positiv-Rate (1-Spezifität)</translation>
+    </message>
+    <message>
+        <source>True Positive Rate (Sensitivity)</source>
+        <translation>Richtig-Positv-Rate (Sensitivität)</translation>
     </message>
     <message>
         <source>Model Info</source>
